@@ -1,4 +1,4 @@
-accoutName = 'Joe'
+accountName = 'Joe'
 accountBalance = 100
 accountPassword = 'soup'
 
@@ -46,6 +46,9 @@ while True:
         print('         Balance:', accountBalance)
         print('         Password:', accountPassword)
         print()
+
+    elif action == 'q':
+        break
 
     elif action == 'w':
         print('Withdraw:')
