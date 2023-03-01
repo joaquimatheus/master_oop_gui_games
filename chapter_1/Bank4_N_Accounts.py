@@ -3,7 +3,7 @@ accountBalancesList = []
 accountPasswordsList = []
 
 def newAccount(name, balance, password):
-    global = accountNamesList, accountBalancesList, accountPasswordsList
+    global accountNamesList, accountBalancesList, accountPasswordsList
     accountNamesList.append(name)
     accountNamesList.append(name)
     accountBalancesList.append(balance)
@@ -90,3 +90,48 @@ while True:
     elif action == 'd':
         print('Deposit')
         userAccountNumber = input('Please enter your account number: ')
+        userAccountNumber = int(userAccountNumber)
+        userDepositAmount = input('Please enter amount to deposit: ')
+        userDepositAmount = int(userDepositAmount)
+        userPassword = input('Please enter the password')
+
+        newBalance = deposit(userAccountNumber, userDepositAmount, userPassword)
+        if newBalance is not None:
+            print('Your new balance is: ', newBalance)
+
+    elif action == 'n':
+        print('New account: ')
+        userName = input('What is your name? ')
+        userStartingAmount = input('What is the amount of your initial deposit')
+        userStartingAmount = int(userStartingAmount)
+        userPassword = input('What password would you like to use for this account?')
+
+        userAccountNumber = len(accountNamesList)
+        newAccount(userName, userStartingAmount, userPassword)
+        print('Your new account number is: ', userAccountNumber)
+
+    elif action == 's':
+        print('Show:')
+        nAccounts = len(accountNamesList)
+        for accountNumber in range(0, nAccounts):
+            show(accountNumber)
+
+    elif action == 'q':
+        break
+
+    elif action == 'w':
+        print('withdraw: ')
+        userAccountNumber = input('Please enter your account number: ')
+        userAccountNumber = int(userAccountNumber)
+        userWithdrawAmount = input('Please enter the amount to withdraw')
+        userWithdrawAmount = int(userWithdrawAmount)
+        userPassword = input('Please enter the password: ')
+
+        newBalance = withdraw(userAccountNumber, userWithdrawAmount, userPassword)
+
+        if newBalance is not None:
+            print('Your new balance is:', newBalance)
+
+print('Done')
+
+
