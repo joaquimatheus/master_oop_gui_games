@@ -43,10 +43,3 @@ class Account():
         print('         Balance:', self.balance)
         print('         Password:', self.password)
         print()
-
-
-oAccount = Account('Joe Schmoe', 1000, 'magic')
-newBalance = oAccount.deposit(500, 'magic')
-
-withdr = oAccount.withdraw(250, 'magic')
-print(withdr)
