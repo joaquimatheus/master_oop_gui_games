@@ -39,5 +39,3 @@ print()
 print("After depositing 100, the user's balance is:", usersBalance)
 
 accountsList[2].show()
-
-print(accountsList)
