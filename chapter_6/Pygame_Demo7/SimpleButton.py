@@ -12,7 +12,7 @@ class SimpleButton():
         self.surfaceUp = pygame.image.load(up)
         self.surfaceDown = pygame.image.load(down)
 
-        self.rec = self.surfaceUp.get_rect()
+        self.rect = self.surfaceUp.get_rect()
         self.rect[0] = loc[0]
         self.rect[1] = loc[1]
 
@@ -25,7 +25,7 @@ class SimpleButton():
         eventPointInButtonRect = self.rect.collidepoint(eventObj.pos)
 
         if self.state == SimpleButton.STATE_IDLE:
-            if (eventOjb.type == MOUSEBUTTONDOWN) and eventPointInButtonRect:
+            if (eventObj.type == MOUSEBUTTONDOWN) and eventPointInButtonRect:
                 self.state = SimpleButton.STATE_ARMED
 
         elif self.state == SimpleButton.STATE_ARMED:
