@@ -11,7 +11,7 @@ class SimpleButton():
         self.loc = loc
         self.surfaceUp = pygame.image.load(up)
         self.surfaceDown = pygame.image.load(down)
-        self.callBack = callback
+        self.callBack = callBack
 
         self.rect = self.surfaceUp.get_rect()
         self.rect[0] = loc[0]

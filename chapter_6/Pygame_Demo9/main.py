@@ -1,10 +1,10 @@
 import pygame
-import pygame.locals import *
+from pygame.locals import *
 from SimpleButton import *
 import sys
 
 GRAY = (200, 200, 200)
-WINDOW_HEIGHT = 400
+WINDOW_WIDTH = 400
 WINDOW_HEIGHT = 100
 FRAMES_PER_SECOND = 30
 
@@ -38,3 +38,29 @@ oButtonC = oButtonC = SimpleButton(window, (275, 30),
                                    callBack=oCallBackTest.myMethod)
 
 counter = 0
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+        if oButtonA.handleEvent(event):
+            print('User pressed button A, handled in the main loop')
+
+        oButtonB.handleEvent(event)
+        oButtonC.handleEvent(event)
+
+    counter = counter + 1
+
+    window.fill(GRAY)
+
+    oButtonA.draw()
+    oButtonB.draw()
+    oButtonC.draw()
+
+    pygame.display.update()
+
+    clock.tick(FRAMES_PER_SECOND)
+
+
