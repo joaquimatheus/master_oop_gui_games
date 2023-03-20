@@ -8,7 +8,7 @@ BLACK = (0, 0, 0)
 GRAY = (128, 128, 128)
 WHITE = (255, 255, 255)
 WINDOW_WIDTH = 640
-WIDNOW_HEIGHT = 480
+WINDOW_HEIGHT = 480
 FRAMES_PER_SECOND = 30
 N_PIXELS_PER_FRAME = 3
 BALL_WIDTH_HEIGHT = 100
@@ -48,7 +48,7 @@ oMessageTextB = pygwidgets.DisplayText(window, (20, 50),
 oUserInputA = pygwidgets.InputText(window, (20, 350), '',
                                    fontSize=24, textColor=BLACK, backgroundColor=WHITE)
 
-userInputB = pygwidgets.InputText(window, (20, 430), '', width= 400,
+oUserInputB = pygwidgets.InputText(window, (20, 430), '', width= 400,
                                   fontSize=24, textColor=WHITE, backgroundColor=BLACK)
 
 counter = 0
@@ -56,7 +56,7 @@ counter = 0
 while True:
     
     for event in pygame.event.get():
-        if event.typee == pygame.QUIT:
+        if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
@@ -65,3 +65,40 @@ while True:
 
         if oHitMeButton.handleEvent(event):
             print('Do not hit me')
+
+        if oUserInputA.handleEvent(event):
+            userText = oUserInputA.getText()
+            print('In the first field, the user entered: ', userText)
+
+        if oUserInputB.handleEvent(event):
+            userText = oUserInputB.getText()
+            print('The second field, the user entered: ', userText)
+
+    counter = counter + 1
+    oMessageTextA.setValue('Here is some text. Loop counter:' + str(counter))
+
+    ballLeft, ballRight = oBall.getLoc()
+
+    if (ballLeft < 0) or (ballLeft + BALL_WIDTH_HEIGHT >= WINDOW_WIDTH):
+        xSpeed = -xSpeed
+
+    if (ballTop < 0) or (ballTop + BALL_WIDTH_HEIGHT >= WINDOW_HEIGHT):
+        ySpeed = -ySpeed
+
+    ballLeft = ballLeft + xSpeed
+    ballTop = ballTop + ySpeed
+    oBall.setLoc( (ballLeft, ballTop ))
+
+    oBackground.draw()
+
+    oBall.draw()
+
+    oRestartButton.draw()
+    oHitMeButton.draw()
+
+    oUserInputA.draw()
+    oUserInputB.draw()
+
+    pygame.display.update()
+
+    clock.tick(FRAMES_PER_SECOND)
