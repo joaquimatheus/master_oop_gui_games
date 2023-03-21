@@ -40,7 +40,7 @@ class Triangle():
 
     def getArea(self):
         theArea = .5 * self.width * self.height
-        return the Area
+        return theArea
 
     def draw(self):
         pygame.draw.polygon(self.window, self.color,
