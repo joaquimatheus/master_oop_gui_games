@@ -11,7 +11,7 @@ class Rectangle():
         self.window = window
         self.width = random.choice((20, 30, 40))
         self.height = random.choice((20, 30 ,40))
-        self.color = ((RED, GREEN, BLUE))
+        self.color = random.choice((RED, GREEN, BLUE))
         self.x = random.randrange(0, 400)
         self.y = random.randrange(0, 400)
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
@@ -24,7 +24,7 @@ class Rectangle():
     def __eq__(self, oOtherRectangle):
         if not isinstance(oOtherRectangle, Rectangle):
             raise TypeError('Second object was not a Rectangle')
-        if self.area == otherRectangle.area:
+        if self.area == oOtherRectangle.area:
             return True
         else:
             return False
@@ -32,7 +32,7 @@ class Rectangle():
     def __lt__(self, oOtherRectangle):
         if not isinstance(oOtherRectangle, Rectangle):
             raise TypeError('Second object was not a Rectangle')
-        if self.area < otherRectangle.area:
+        if self.area < oOtherRectangle.area:
             return True
         else:
             return False
@@ -40,7 +40,7 @@ class Rectangle():
     def __gr__(self, oOtherRectangle):
         if not isinstance(oOtherRectangle, Rectangle):
             raise TypeError('Second object was not a Rectangle')
-        if self.area > otherRectangle.area:
+        if self.area > oOtherRectangle.area:
             return True
         else:
             return False
