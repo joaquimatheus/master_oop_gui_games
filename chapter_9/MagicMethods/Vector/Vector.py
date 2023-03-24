@@ -18,3 +18,30 @@ class Vector():
             return Vector((self.x * oOther), (self.y * oOther))
         else:
             raise TypeError('Second value must be a vector or scalar')
+
+    def __abs__(self):
+        return math.sqrt((self.x ** 2) + (self.y ** 2))
+    
+    def __eq__(self, oOther):
+        return (self.x == oOther.x) and (self.y == oOther.y)
+
+    def __ne__(self, oOther):
+        return not (self == oOther)
+
+    def __lt__(self, oOther):
+        if abs(self) < abs(oOther):
+            return True
+        else:
+            return False
+
+    def __gt__(self, oOther):
+        if abs(self) > abs(oOther):
+            return True
+        else:
+            return False
+
+    def __str__(self):
+        return 'This vector has the value (' + str(self.x) + ', ' + str(self.y) + ')'
+
+oVector1 = Vector(3, 2)
+oVector2 = Vector(1, 3)
