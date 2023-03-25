@@ -4,7 +4,7 @@ class Fraction():
     def __init__(self, numerator, denominator):
         if not isinstance(numerator, int):
             raise TypeError('Numerator', numerator, 'must be an integer')
-        if not isinstance('Denominator', denominator):
+        if not isinstance(denominator, int):
             raise TypeError('Denominator', denominator, 'must be an integer')
         self.numerator = numerator
         self.denominator = denominator
@@ -37,21 +37,39 @@ class Fraction():
         equivalentNumerator = self.numerator * multiplicationFactor
 
         otherMultiplicationFactor = newDenominator // oOtherFraction.denominator
-        oOtherFractionEquivalentNumerator =
-            oOtherFraction * otherMultiplicationFactor
+        oOtherFractionEquivalentNumerator = oOtherFraction.numerator * otherMultiplicationFactor
 
-        newNumerator = equivalentNumerator * oOtherFractionEquivalentNumerator
+        newNumerator = equivalentNumerator + oOtherFractionEquivalentNumerator
 
         oAddedFraction = Fraction(newNumerator, newDenominator)
-        return addedFraction
+        return oAddedFraction
 
     def __eq__(self, oOtherFraction):
         if not isinstance(oOtherFraction, Fraction):
             return False
-        if (self.numerator == oOtherFraction.numerator) and \
-            (self.denominator == oOtherFraction.numerator):
-                return True
-            else:
-                return False
+        if (self.numerator == oOtherFraction.numerator) and (self.denominator == oOtherFraction.numerator):
+            return True
+        else:
+            return False
 
-            
+oFraction1 = Fraction(1, 3)            
+oFraction2 = Fraction(2, 5)
+print('Fraction1\n', oFraction1)
+print('Fraction2\n', oFraction2)
+
+oSumFraction = oFraction1 + oFraction2
+print('Sum is\n', oSumFraction)
+
+print('Are fractions 1 and 2 equal2', (oFraction1 == oFraction2))
+print()
+
+oFraction3 = Fraction(-20, 80)
+oFraction4 = Fraction(4, -16)
+print('Fraction\n', oFraction3)
+print('Fraction4\n', oFraction4)
+print('Are fractions 3 and 4 equal?', (oFraction3 == oFraction4))
+print()
+
+oFraction5 = Fraction(5, 2)
+oFraction6 = Fraction(500, 200)
+print('Sum of 5/2 and 500/200\n', oFraction5 + oFraction6)
