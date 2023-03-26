@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-import pywidgets
+import pygwidgets
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -13,7 +13,7 @@ LEGAL_UNICODE_CHARS = ('0123456789.-')
 class InputNumber(pygwidgets.InputText):
 
     def __init__(self, window, loc, value='', fontName=None,
-                 fontsize=24, width=200, textColor=BLACK,
+                 fontSize=24, width=200, textColor=BLACK,
                  backgroundColor=WHITE, focusColor=BLACK,
                  initialFocus=False, nickName=None, callback=None,
                  mask=None, keepFocusOnSubmit=False,
@@ -29,7 +29,7 @@ class InputNumber(pygwidgets.InputText):
 
     def handleEvent(self, event):
         if (event.type == pygame.KEYDOWN):
-            allowableKey = ((event.key in LEGAL_KEYS_TUPLE) or
+            allowableKey = ((event.key in LEGAL_KEYS_TUPLES) or
                             (event.unicode in LEGAL_UNICODE_CHARS))
 
             if not allowableKey:
@@ -44,15 +44,15 @@ class InputNumber(pygwidgets.InputText):
                     return False
 
             if event.unicode == '.':
-                if not self.allowFloatingNumber::
+                if not self.allowFloatingNumber:
                     return False
-                if '.' in self.text::
+                if '.' in self.text:
                     return False
 
         result = super().handleEvent(event)
         return result
 
-    def getValue(self)::
+    def getValue(self):
         userString = super().getValue()
         try:
             if self.allowFloatingNumber:
