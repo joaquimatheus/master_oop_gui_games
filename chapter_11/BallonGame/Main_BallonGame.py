@@ -1,13 +1,14 @@
 from pygame.locals import *
 import pygwidgets
 import sys
-import pyhame
-from BallonMgr import *
+import pygame
+from BalloonMgr import *
+from  BalloonConstants import *
 
 BLACK = (0, 0, 0)
 GRAY = (200, 200, 200)
 BACKGROUND_COLOR = (0, 180, 180)
-WINDOW_WIDH = 640
+WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 640
 PANEL_HEIGHT = 60
 USABLE_WINDOW_HEIGHT = WINDOW_HEIGHT - PANEL_HEIGHT
@@ -27,7 +28,7 @@ oStatusDisplay = pygwidgets.DisplayText(window, (100, USABLE_WINDOW_HEIGHT + 15)
 oStartButton = pygwidgets.TextButton(window,
                                      (WINDOW_WIDTH - 110, USABLE_WINDOW_HEIGHT + 10), 'Start')
 
-oBallonMgr = BallonMgr(window, WINDOW_WIDTH, USABLE_WINDOW_HEIGHT)
+oBalloonMgr = BalloonMgr(window, WINDOW_WIDTH, USABLE_WINDOW_HEIGHT)
 playing = False
 
 while True:
@@ -39,24 +40,25 @@ while True:
             sys.exit()
 
         if playing:
-            oBallonMgr.handleEvent(event)
-            theScore = oBallonMgr.getScore()
+            oBalloonMgr.handleEvent(event)
+            theScore = oBalloonMgr.getScore()
             oScoreDisplay.setValue('Score ' + str(theScore))
 
         elif oStartButton.handleEvent(event):
-            oBallonMgr.start()
+            oBalloonMgr.start()
             oScoreDisplay.setValue('Score: 0')
             playing = True
 
     if playing:
-        oBallonMgr.update()
+        oBalloonMgr.update()
         nPopped = oBalloonMgr.getCountPopped()
         nMissed = oBalloonMgr.getCountMissed()
+
         oStatusDisplay.setValue('Popped: ' + str(nPopped) +
                                 '  Missed: ' + str(nMissed) +
-                                '  Out of: ' + str(N_BALLONS))
+                                '  Out of: ' + str(N_BALLOONS))
 
-        if (nPopped + nMissed) == N_BALLONS:
+        if (nPopped + nMissed) == N_BALLOONS:
             playing = False
             oStartButton.enable()
 
@@ -75,4 +77,3 @@ while True:
     pygame.display.update()
 
     clock.tick(FRAMES_PER_SECOND)
-

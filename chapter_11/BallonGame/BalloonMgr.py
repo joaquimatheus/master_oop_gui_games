@@ -45,7 +45,7 @@ class BalloonMgr():
         return self.score
 
     def getCountPopped(self):
-        self.nPopped
+        return self.nPopped
 
     def getCountMissed(self):
         return self.nMissed

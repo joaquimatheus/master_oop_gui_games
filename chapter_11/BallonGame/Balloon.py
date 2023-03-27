@@ -21,7 +21,7 @@ class Balloon(ABC):
 
         if not Balloon.popSoundLoaded:
             Balloon.popSoundLoaded = True
-            Balloon.popSound = pygame.mixer.sound('sounds/balloonPop.wav')
+            Balloon.popSound = pygame.mixer.Sound('sounds/balloonPop.wav')
 
         balloonRect = self.balloonImage.getRect()
         self.width = balloonRect.width
@@ -40,7 +40,7 @@ class Balloon(ABC):
             return False, 0
 
     def update(self):
-        self.y = self.y 0 self.speedY
+        self.y = self.y - self.speedY
         self.balloonImage.setLoc((self.x, self.y))
         if self.y < -self.height:
             return BALLOON_MISSED
@@ -54,4 +54,25 @@ class Balloon(ABC):
         print(self.size, 'Balloon', self.ID, 'is going away')
 
 class BalloonSmall(Balloon):
-    pass
+    balloonImage = pygame.image.load('images/redBalloonSmall.png')
+    
+    def __init__(self, window, maxWidth, maxHeight, ID):
+        oImage = pygwidgets.Image(window, (0, 0),
+                                  BalloonSmall.balloonImage)
+        super().__init__(window, maxWidth, maxHeight, ID,
+                         oImage, 'Small', 30, 3.1)
+
+class BalloonMedium(Balloon):
+    balloonImage = pygame.image.load('images/redBalloonMedium.png')
+    def __init__(self, window, maxWidth, maxHeight, ID):
+        oImage = pygwidgets.Image(window, (0, 0),
+                                  BalloonMedium.balloonImage)
+
+        super().__init__(window, maxWidth, maxHeight, ID, oImage, 'Medium', 20, 2.2)
+
+class BalloonLarge(Balloon):
+    balloonImage = pygame.image.load('images/redBalloonMedium.png')
+    def __init__(self, window, maxWidth, maxHeight, ID):
+        oImage = pygwidgets.Image(window, (0, 0),
+                                  BalloonLarge.balloonImage)
+        super().__init__(window, maxWidth, maxHeight, ID, oImage, 'Large', 10, 1.5)
