@@ -25,3 +25,38 @@ class SimpleSpriteSheetAnimation():
             image = spriteSheetImage.subsurface(subsurfaceRect)
             self.images
 
+            col = col + 1
+            if col == nCols:
+                col = 0
+                row = row + 1
+
+        self.durationPerImage = durationPerImage
+        self.playing = False
+        self.index =0
+
+    def play(self):
+        if self.playing:
+            return
+        self.playing = True
+        self.imageStartTime = time.time()
+        self.index = 0
+
+    def update(self):
+        if not self.playing:
+            return
+
+        self.elapsed = time.time() - self.imageStartTime
+
+        if self.elapsed > self.durationPerImage:
+            self.index = self.index + 1
+
+            if self.index < self.nImages:
+                self.imageStartTime = time.time()
+
+            else:
+                self.playing = False
+                self.index = 0
+
+    def draw(self):
+        theImage = self.imagesList[self.index]
+        self.window.blit(theImage, self.loc)
